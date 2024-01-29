@@ -1,7 +1,7 @@
 /** import fastify module */
 import Fastify from "fastify";
-/** import products list */
-import { products } from "./products.js";
+/** import products response schema */
+import { getProductsList, getSingleProduct } from "./schemas.js";
 
 /** create an instants from fastify */
 const fastify = Fastify({
@@ -23,25 +23,12 @@ fastify.get("/", (req, reply) => {
 /**
  * create a route to retrieve a list of products
  */
-fastify.get("/products", (req, reply) => {
-	reply.send(products);
-});
+fastify.get("/products", getProductsList);
 
 /**
  * create a route to retrieve single product
  */
-fastify.get("/products/single/:id", (req, reply) => {
-	/** extract id from request */
-	const { id } = req.params;
-	/** find the requested product from product list */
-	const product = products.find((p) => p.id === +id);
-	/** send error if the product was not found */
-	if (!product) {
-		return reply.code(404).send({ message: "Product was notfound" });
-	}
-	/** send success response */
-	return reply.send(product);
-});
+fastify.get("/products/single/:id", getSingleProduct);
 
 const main = async () => {
 	try {
