@@ -1,5 +1,8 @@
-/** import products list */
-import { products } from "./products.js";
+/** import products handlers */
+import {
+	getSingleProductHandler,
+	getProductsListHandler,
+} from "../handler/products.handler.js";
 
 /** define product data structure */
 const productData = {
@@ -25,7 +28,7 @@ const notfound = {
 };
 
 /** define an output schema for single products request */
-export const getSingleProduct = {
+const getSingleProduct = {
 	schema: {
 		/** Define the responses for this schema */
 		response: {
@@ -36,22 +39,11 @@ export const getSingleProduct = {
 		},
 	},
 	/** define the handler related to the single product schema */
-	handler: function (req, reply) {
-		/** extract id from request */
-		const { id } = req.params;
-		/** find the requested product from product list */
-		const product = products.find((p) => p.id === +id);
-		/** send error if the product was not found */
-		if (!product) {
-			return reply.code(404).send({ message: "Product was notfound" });
-		}
-		/** send success response */
-		return reply.send(product);
-	},
+	handler: getSingleProductHandler,
 };
 
 /** define an output schema for products list request */
-export const getProductsList = {
+const getProductsList = {
 	schema: {
 		/** Define the responses for this schema */
 		response: {
@@ -65,7 +57,19 @@ export const getProductsList = {
 		},
 	},
 	/** define the handler related to the products list schema */
-	handler: function (req, reply) {
-		reply.send(products);
-	},
+	handler: getProductsListHandler,
 };
+
+export default function productRoutes(fastify, options, done) {
+	/**
+	 * create a route to retrieve a list of products
+	 */
+	fastify.get("/", getProductsList);
+
+	/**
+	 * create a route to retrieve single product
+	 */
+	fastify.get("/single/:id", getSingleProduct);
+
+	done();
+}
