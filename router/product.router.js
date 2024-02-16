@@ -34,6 +34,9 @@ const getSingleProduct = {
 		tags: ["Products"],
 		/** define swagger summary */
 		summary: "Retrieve single product data",
+		/** define API security method for single API */
+		security: [{ apiKey: [] }],
+		/** define API params */
 		params: {
 			type: "object",
 			properties: {
@@ -60,6 +63,8 @@ const getProductsList = {
 	schema: {
 		/** define swagger tag */
 		tags: ["Products"],
+		/** define API security method for single API */
+		security: [{ apiKey: [] }],
 		/** define swagger summary */
 		summary: "Retrieve products list",
 		/** Define the responses for this schema */
