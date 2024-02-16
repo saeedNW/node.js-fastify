@@ -21,6 +21,7 @@ routersInitializer(fastify);
 const main = async () => {
 	try {
 		await fastify.listen({ port: PORT });
+		console.log(`server running on http://localhost:${PORT}`);
 	} catch (err) {
 		fastify.log.error(err);
 		process.exit(1);
