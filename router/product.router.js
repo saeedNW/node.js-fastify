@@ -30,6 +30,19 @@ const notfound = {
 /** define an output schema for single products request */
 const getSingleProduct = {
 	schema: {
+		/** define swagger tag */
+		tags: ["Products"],
+		/** define swagger summary */
+		summary: "Retrieve single product data",
+		params: {
+			type: "object",
+			properties: {
+				id: {
+					type: "string",
+					description: "single product's id",
+				},
+			},
+		},
 		/** Define the responses for this schema */
 		response: {
 			/** Response for HTTP status code 200 (OK) */
@@ -45,6 +58,10 @@ const getSingleProduct = {
 /** define an output schema for products list request */
 const getProductsList = {
 	schema: {
+		/** define swagger tag */
+		tags: ["Products"],
+		/** define swagger summary */
+		summary: "Retrieve products list",
 		/** Define the responses for this schema */
 		response: {
 			/** Response for HTTP status code 200 (OK) */
