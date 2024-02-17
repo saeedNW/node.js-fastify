@@ -2,12 +2,17 @@
 import fastifySwagger from "@fastify/swagger";
 /** import fastify swagger ui module */
 import fastifySwaggerUi from "@fastify/swagger-ui";
+/** import fastify form body */
+import fastifyFormBody from "@fastify/formbody";
 
 /**
  * swagger and swagger ui configuration and initialization
  * @param {object} fastify - the fastify instance
  */
 export default function swaggerInitializer(fastify) {
+	/** register fastify form body  */
+	fastify.register(fastifyFormBody);
+	
 	/** register fastify swagger module */
 	fastify.register(fastifySwagger, {
 		/** swagger configuration */
@@ -23,6 +28,7 @@ export default function swaggerInitializer(fastify) {
 			/** swagger categories tags */
 			tags: [
 				{ name: "Products", description: "Application products management" },
+				{ name: "Auth", description: "Application authentication management" },
 			],
 			/** supported schemes */
 			schemes: ["http"],

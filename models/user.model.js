@@ -1,7 +1,7 @@
 /** import sequelize methods */
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 /** import sequelize connection config */
-import { sequelize } from "../configs/sequelize.config";
+import { sequelize } from "../configs/sequelize.config.js";
 
 /**
  * represents a User in the database.
@@ -24,6 +24,3 @@ User.init(
 	/** Configuration options */
 	{ sequelize, name: "users" }
 );
-
-/** synchronize the model with the database, creating the "users" table if it doesn't exist */
-User.sync({ force: true });
