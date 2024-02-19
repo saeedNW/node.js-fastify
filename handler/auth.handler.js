@@ -1,11 +1,12 @@
 import { User } from "../models/user.model.js";
+import { fastify } from "../server.js";
 
 export async function registerHandler(req, reply) {
 	const { username, password, firstName, lastName } = req.body;
 
 	const newUser = new User({
 		username,
-		password,
+		password: await fastify.bcrypt.hash(password),
 		firstName,
 		lastName,
 	});

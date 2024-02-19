@@ -4,15 +4,23 @@ import Fastify from "fastify";
 import routersInitializer from "./router/router.js";
 /** import swagger initializer */
 import swaggerInitializer from "./configs/swagger.config.js";
+/** import fastify bcrypt module */
+import fastifyBcrypt from "fastify-bcrypt";
 
 /** create an instants from fastify */
-const fastify = Fastify({
+export const fastify = Fastify({
 	logger: true,
 });
 
 /** define application PORT number */
 const PORT = 3000;
 
+/** initialize fastify bcrypt */
+fastify.register(fastifyBcrypt, {
+	saltWorkFactor: 13,
+});
+
+/** initialize swagger configs */
 swaggerInitializer(fastify);
 
 /** initialize application urls */
