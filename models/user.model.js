@@ -16,6 +16,7 @@ User.init(
 		id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 		firstName: { type: DataTypes.STRING },
 		lastName: { type: DataTypes.STRING },
+		accessToken: { type: DataTypes.STRING, defaultValue: "" },
 		username: { type: DataTypes.STRING, allowNull: false, unique: true },
 		password: { type: DataTypes.STRING, allowNull: false },
 		active: { type: DataTypes.BOOLEAN, defaultValue: false },
@@ -24,3 +25,5 @@ User.init(
 	/** Configuration options */
 	{ sequelize, name: "users" }
 );
+
+// User.sync({force:true})
