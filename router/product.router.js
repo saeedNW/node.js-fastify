@@ -4,6 +4,12 @@ import {
 	getProductsListHandler,
 } from "../handler/products.handler.js";
 
+/** import middlewares example */
+import {
+	firstExample,
+	secondExample,
+} from "../middlewares/router.middleware.js";
+
 /** define product data structure */
 const productData = {
 	/** Define the type of data as an object */
@@ -78,6 +84,12 @@ const getProductsList = {
 			},
 		},
 	},
+	/**
+	 * initialize pre handler method.
+	 * this method is responsible for handling middlewares
+	 * load order
+	 */
+	preHandler: [firstExample, secondExample],
 	/** define the handler related to the products list schema */
 	handler: getProductsListHandler,
 };
