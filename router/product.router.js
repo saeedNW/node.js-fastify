@@ -83,6 +83,8 @@ const getProductsList = {
 };
 
 export default function productRoutes(fastify, options, done) {
+	/** define authorization hook for products router */
+	fastify.addHook("onRequest", (req) => req.jwtVerify());
 	/**
 	 * create a route to retrieve a list of products
 	 */
