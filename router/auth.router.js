@@ -62,7 +62,7 @@ const registerRoute = {
 		},
 		/** Define the responses for this schema */
 		response: {
-			/** Response for HTTP status code 200 (OK) */
+			/** Response for HTTP status code 201 (Created) */
 			201: processResponse,
 		},
 	},

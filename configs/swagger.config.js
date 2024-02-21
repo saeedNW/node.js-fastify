@@ -29,6 +29,7 @@ export default function swaggerInitializer(fastify) {
 			tags: [
 				{ name: "Products", description: "Application products management" },
 				{ name: "Auth", description: "Application authentication management" },
+				{ name: "User", description: "User account management" },
 			],
 			/** supported schemes */
 			schemes: ["http"],
