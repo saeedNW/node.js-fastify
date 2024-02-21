@@ -12,7 +12,7 @@ import fastifyFormBody from "@fastify/formbody";
 export default function swaggerInitializer(fastify) {
 	/** register fastify form body  */
 	fastify.register(fastifyFormBody);
-	
+
 	/** register fastify swagger module */
 	fastify.register(fastifySwagger, {
 		/** swagger configuration */
@@ -30,6 +30,7 @@ export default function swaggerInitializer(fastify) {
 				{ name: "Products", description: "Application products management" },
 				{ name: "Auth", description: "Application authentication management" },
 				{ name: "User", description: "User account management" },
+				{ name: "Category", description: "categories management" },
 			],
 			/** supported schemes */
 			schemes: ["http"],

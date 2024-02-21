@@ -6,6 +6,8 @@ import productRoutes from "./product.router.js";
 import authRoutes from "./auth.router.js";
 /** import user router */
 import userRouters from "./user.router.js";
+/** import categories router */
+import categoryRouters from "./category.router.js";
 
 export default function routersInitializer(fastify) {
 	/** initialize public router */
@@ -16,4 +18,6 @@ export default function routersInitializer(fastify) {
 	fastify.register(authRoutes, { prefix: "auth" });
 	/** initialize user router */
 	fastify.register(userRouters, { prefix: "panel" });
+	/** initialize categories router */
+	fastify.register(categoryRouters, { prefix: "categories" });
 }
