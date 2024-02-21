@@ -9,6 +9,8 @@ import {
 	firstExample,
 	secondExample,
 } from "../middlewares/router.middleware.js";
+/** import access token verification middleware */
+import { verifyAccessToken } from "../utils/verify.access.js";
 
 /** define product data structure */
 const productData = {
@@ -60,6 +62,12 @@ const getSingleProduct = {
 			404: notfound,
 		},
 	},
+	/**
+	 * initialize pre handler method.
+	 * this method is responsible for handling middlewares
+	 * load order
+	 */
+	preHandler: [verifyAccessToken],
 	/** define the handler related to the single product schema */
 	handler: getSingleProductHandler,
 };
@@ -89,14 +97,17 @@ const getProductsList = {
 	 * this method is responsible for handling middlewares
 	 * load order
 	 */
-	preHandler: [firstExample, secondExample],
+	preHandler: [verifyAccessToken, firstExample, secondExample],
 	/** define the handler related to the products list schema */
 	handler: getProductsListHandler,
 };
 
 export default function productRoutes(fastify, options, done) {
-	/** define authorization hook for products router */
-	fastify.addHook("onRequest", (req) => req.jwtVerify());
+	/**
+	 *? define authorization hook for products router (hook example)
+	 */
+	//* fastify.addHook("onRequest", (req) => req.jwtVerify());
+
 	/**
 	 * create a route to retrieve a list of products
 	 */
